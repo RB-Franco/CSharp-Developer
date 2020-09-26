@@ -13,9 +13,19 @@ namespace Ecommerce.Repositorio
         public DbSet<ProdutosPedido> ProdutosPedidos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {            
+            modelBuilder.Entity<Cliente>().Property(p => p.Id)
+                .UseNpgsqlIdentityAlwaysColumn(); 
+
+            modelBuilder.Entity<Produto>().Property(p => p.Id)
+                .UseNpgsqlIdentityAlwaysColumn();     
+
+            modelBuilder.Entity<Pedido>().Property(p => p.Id)
+                .UseNpgsqlIdentityAlwaysColumn();                             
+
             modelBuilder.Entity<ProdutosPedido>()
                 .HasKey(PP => new {PP.ClienteId, PP.PedidoId, PP.ProdutoId});
+            
         }
     }
 }

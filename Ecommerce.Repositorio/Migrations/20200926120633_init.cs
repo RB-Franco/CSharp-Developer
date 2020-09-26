@@ -12,7 +12,7 @@ namespace Ecommerce.Repositorio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
                     Codigo = table.Column<string>(nullable: true),
                     CodigoCli = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true)
@@ -27,7 +27,7 @@ namespace Ecommerce.Repositorio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
                     Codigo = table.Column<string>(nullable: true),
                     CodigoProd = table.Column<string>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
@@ -44,7 +44,7 @@ namespace Ecommerce.Repositorio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
                     ValorTotal = table.Column<decimal>(nullable: false),
                     QtdItem = table.Column<int>(nullable: false),
                     ValorFrete = table.Column<decimal>(nullable: false),

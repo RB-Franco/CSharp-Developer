@@ -21,7 +21,8 @@ namespace Ecommerce.Repositorio.Migrations
             modelBuilder.Entity("Ecommerce.Dominio.Cliente", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
 
                     b.Property<string>("Codigo");
 
@@ -37,7 +38,8 @@ namespace Ecommerce.Repositorio.Migrations
             modelBuilder.Entity("Ecommerce.Dominio.Pedido", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
 
                     b.Property<int>("ClienteId");
 
@@ -61,7 +63,8 @@ namespace Ecommerce.Repositorio.Migrations
             modelBuilder.Entity("Ecommerce.Dominio.Produto", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
 
                     b.Property<string>("Codigo");
 

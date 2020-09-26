@@ -9,10 +9,10 @@ namespace Ecommerce.Dominio
         public int QtdItem { get; set; }
         public decimal ValorFrete { get; set; }  
         public int ClienteId { get; set; }
-        public Cliente Cliente { get; set; } 
+        public Cliente Cliente { get; } 
         public int ProdutoId { get; set; }
-        public Produto Produto { get; set; } 
+        public Produto Produto { get; } 
         
-        public List<ProdutosPedido> ProdutosPedidos { get; set; }
+        public List<ProdutosPedido> ProdutosPedidos { get; }
     }
 }

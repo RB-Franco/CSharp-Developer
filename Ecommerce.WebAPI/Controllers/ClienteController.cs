@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.WebAPI.Controllers
 {
-    [Route("api/[controler]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
@@ -43,8 +43,7 @@ namespace Ecommerce.WebAPI.Controllers
                 if(await _repo.SaveChangesAsync())
                 {
                     return Created($"/api/cliente/{model.Id}", model);
-                }
-                
+                }                
             }
             catch (System.Exception)
             {

@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.Repositorio.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    [Migration("20200926035841_init")]
+    [Migration("20200926120633_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,8 @@ namespace Ecommerce.Repositorio.Migrations
             modelBuilder.Entity("Ecommerce.Dominio.Cliente", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
 
                     b.Property<string>("Codigo");
 
@@ -39,7 +40,8 @@ namespace Ecommerce.Repositorio.Migrations
             modelBuilder.Entity("Ecommerce.Dominio.Pedido", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
 
                     b.Property<int>("ClienteId");
 
@@ -63,7 +65,8 @@ namespace Ecommerce.Repositorio.Migrations
             modelBuilder.Entity("Ecommerce.Dominio.Produto", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
 
                     b.Property<string>("Codigo");
 

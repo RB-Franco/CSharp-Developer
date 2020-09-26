@@ -12,28 +12,29 @@ namespace Ecommerce.Repositorio
     public EcommerceRepositorio(EcommerceContext context)
     {
       _context = context;
+      _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
     }
 
     #region "Metodos Crud"
         //Metodos Gerais
         public void Add<T>(T entity) where T : class
         {
-        _context.Add(entity);
+            _context.Add(entity);
         }
 
         public void Update<T>(T entity) where T : class
         {
-        _context.Update(entity);
+            _context.Update(entity);
         }
 
         public void Delete<T>(T entity) where T : class
         {
-        _context.Remove(entity);
+            _context.Remove(entity);
         }
 
         public async Task<bool> SaveChangesAsync()
         {
-        return( await _context.SaveChangesAsync()) >0;
+            return( await _context.SaveChangesAsync()) >0;
         }
     #endregion
 
@@ -49,29 +50,27 @@ namespace Ecommerce.Repositorio
                 .Include(pp => pp.ProdutosPedidos)
                 .ThenInclude(p => p.Produto);   
             }
-            query = query.OrderBy(i => i.Id);
+            query = query.AsNoTracking().OrderBy(i => i.Id);
             
             return await query.ToArrayAsync();
         }
         
-
         //CLIENTE
         public async Task<Cliente[]> GetAllClientesAsync()
         {
             IQueryable<Cliente> query = _context.Clientes;
             
-            query = query.OrderBy(p => p.Nome);
+            query = query.AsNoTracking().OrderBy(p => p.Id);
             
             return await query.ToArrayAsync();
         }
         
-        //PRODUTO
-        
+        //PRODUTO        
         public async Task<Produto[]> GetAllProdutosAsync()
         {
             IQueryable<Produto> query = _context.Produtos;
             
-            query = query.OrderBy(p => p.Nome);
+            query = query.AsNoTracking().OrderBy(p => p.Nome);
             
             return await query.ToArrayAsync();
         }
@@ -80,7 +79,7 @@ namespace Ecommerce.Repositorio
         {
             IQueryable<Produto> query = _context.Produtos;
             
-            query = query.Where(p => p.Id == Id);
+            query = query.AsNoTracking().Where(p => p.Id == Id);
             
             return await query.FirstOrDefaultAsync();
         }

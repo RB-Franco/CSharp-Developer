@@ -25,7 +25,7 @@ namespace Ecommerce.WebAPI
                 .AddDbContext<EcommerceContext>(
                 x => x.UseNpgsql(Configuration.GetConnectionString("EcommerceDb"))
             );
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<IEcommerceRepositorio, EcommerceRepositorio>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Ecommerce.Repositorio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.WebAPI.Controllers
 {
@@ -10,19 +11,47 @@ namespace Ecommerce.WebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        public readonly EcommerceContext _context;
+
+        public ValuesController(EcommerceContext context) 
+        {
+            _context = context;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var resultado = await _context.Pedidos.ToListAsync();
+                return Ok(resultado);
+            }
+            catch (System.Exception)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha na conexão com o banco de dados!");
+            }
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            try
+            {
+                var resultado = await _context.Pedidos.FirstOrDefaultAsync(x => x.Id == id);
+                return Ok(resultado);
+            }
+            catch (System.Exception)
+            {
+                
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha na conexão com o banco de dados!");
+            }
         }
+
+
+        
 
         // POST api/values
         [HttpPost]

@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ecommerce.Repositorio.Migrations
 {
     [DbContext(typeof(EcommerceContext))]
-    [Migration("20200926120633_init")]
+    [Migration("20200927180739_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,13 +22,14 @@ namespace Ecommerce.Repositorio.Migrations
 
             modelBuilder.Entity("Ecommerce.Dominio.Cliente", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Codigo");
 
-                    b.Property<string>("CodigoCli");
+                    b.Property<int>("Id_Cli")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Nome");
 
@@ -55,22 +56,19 @@ namespace Ecommerce.Repositorio.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
-
-                    b.HasIndex("ProdutoId");
-
                     b.ToTable("Pedidos");
                 });
 
             modelBuilder.Entity("Ecommerce.Dominio.Produto", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Codigo");
 
-                    b.Property<string>("CodigoProd");
+                    b.Property<int>("Id_Prod")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ImagemUrl");
 
@@ -95,39 +93,14 @@ namespace Ecommerce.Repositorio.Migrations
 
                     b.HasIndex("PedidoId");
 
-                    b.HasIndex("ProdutoId");
-
                     b.ToTable("ProdutosPedidos");
-                });
-
-            modelBuilder.Entity("Ecommerce.Dominio.Pedido", b =>
-                {
-                    b.HasOne("Ecommerce.Dominio.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Ecommerce.Dominio.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Ecommerce.Dominio.ProdutosPedido", b =>
                 {
-                    b.HasOne("Ecommerce.Dominio.Cliente", "Cliente")
-                        .WithMany("ProdutosPedidos")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Ecommerce.Dominio.Pedido", "Pedido")
+                    b.HasOne("Ecommerce.Dominio.Pedido")
                         .WithMany("ProdutosPedidos")
                         .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Ecommerce.Dominio.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

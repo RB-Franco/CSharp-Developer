@@ -42,7 +42,7 @@ namespace Ecommerce.WebAPI.Controllers
                 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Created($"/api/cliente/{model.Id}", model);
+                    return Created($"/api/cliente/{model.Id_Cli}", model);
                 }                
             }
             catch (System.Exception)

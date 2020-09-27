@@ -14,11 +14,11 @@ namespace Ecommerce.Repositorio
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
-            modelBuilder.Entity<Cliente>().Property(p => p.Id)
-                .UseNpgsqlIdentityAlwaysColumn(); 
+            modelBuilder.Entity<Cliente>().Property(p => p.Id_Cli)
+                .UseNpgsqlIdentityAlwaysColumn().UseNpgsqlIdentityColumn(); 
 
-            modelBuilder.Entity<Produto>().Property(p => p.Id)
-                .UseNpgsqlIdentityAlwaysColumn();     
+            modelBuilder.Entity<Produto>().Property(p => p.Id_Prod)
+                .UseNpgsqlIdentityAlwaysColumn().UseNpgsqlIdentityColumn();     
 
             modelBuilder.Entity<Pedido>().Property(p => p.Id)
                 .UseNpgsqlIdentityAlwaysColumn();                             

@@ -55,7 +55,7 @@ namespace Ecommerce.Repositorio
         {
             IQueryable<Cliente> query = _context.Clientes;
             
-            query = query.AsNoTracking().OrderBy(p => p.Id);
+            query = query.AsNoTracking().OrderBy(p => p.Id_Cli);
             
             return await query.ToArrayAsync();
         }
@@ -74,7 +74,7 @@ namespace Ecommerce.Repositorio
         {
             IQueryable<Produto> query = _context.Produtos;
             
-            query = query.AsNoTracking().Where(p => p.Id == Id);
+            query = query.AsNoTracking().Where(p => p.Id_Prod == Id);
             
             return await query.FirstOrDefaultAsync();
         }

@@ -40,16 +40,11 @@ namespace Ecommerce.Repositorio
 
     #region "Metodos de Retorno"
         //PEDIDO
-        public async Task<Pedido[]> GetAllPedidoAsync(bool includeProdutos = false)
+        public async Task<Pedido[]> GetAllPedidoAsync()
         {
             IQueryable<Pedido> query = _context.Pedidos;
             
-            if (includeProdutos)
-            {
-             query = query
-                .Include(pp => pp.ProdutosPedidos)
-                .ThenInclude(p => p.Produto);   
-            }
+            
             query = query.AsNoTracking().OrderBy(i => i.Id);
             
             return await query.ToArrayAsync();

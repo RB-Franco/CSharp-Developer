@@ -15,7 +15,7 @@ namespace Ecommerce.Repositorio
          //PEDIDOS         
 
          //Busca todos os pedidos
-         Task<Pedido[]> GetAllPedidoAsync(bool includeProdutos);
+         Task<Pedido[]> GetAllPedidoAsync();
                  
          //CLIENTE
          Task<Cliente[]> GetAllClientesAsync();

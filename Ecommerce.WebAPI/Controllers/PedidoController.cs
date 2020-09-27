@@ -8,11 +8,11 @@ namespace Ecommerce.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PedidoControler : ControllerBase
+    public class PedidoController : ControllerBase
     {        
         private readonly IEcommerceRepositorio _repo;
 
-        public PedidoControler (IEcommerceRepositorio repo)
+        public PedidoController (IEcommerceRepositorio repo)
         {
             _repo = repo;
         }
@@ -24,7 +24,7 @@ namespace Ecommerce.WebAPI.Controllers
         {
             try
             {
-                var resultado = await _repo.GetAllPedidoAsync(false);
+                var resultado = await _repo.GetAllPedidoAsync();
                 return Ok(resultado);
             }
             catch (System.Exception)
